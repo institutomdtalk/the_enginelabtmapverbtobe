@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Verbo To Be — MD Talk | Hero Slider Expanded</title>
+<title>O Verbo To Be — MD Talk | Drawer Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -558,6 +558,112 @@ body {
   padding-top:118px;
 }
 
+
+/* ─── RIGHT DRAWER BEHAVIOR ─── */
+.hero {
+  transition:grid-template-columns .62s cubic-bezier(.77,0,.18,1);
+}
+.hero.drawer-closed {
+  grid-template-columns:minmax(0, 1fr) 58px;
+}
+.hero.drawer-closed .hero-left {
+  padding-right:80px;
+}
+.hero.drawer-closed .hero-right {
+  padding:0;
+  min-width:58px;
+  box-shadow:-8px 0 28px rgba(21,39,68,.08);
+}
+.hero-slide-panel,
+#hero-canvas,
+.hero-right-word {
+  transition:opacity .35s ease, transform .45s cubic-bezier(.77,0,.18,1);
+}
+.hero.drawer-closed .hero-slide-panel,
+.hero.drawer-closed #hero-canvas,
+.hero.drawer-closed .hero-right-word {
+  opacity:0;
+  transform:translateX(38px);
+  pointer-events:none;
+}
+.drawer-toggle {
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:30;
+  width:48px;
+  min-height:132px;
+  border:1px solid rgba(232,213,176,.28);
+  background:rgba(250,250,247,.96);
+  color:var(--navy);
+  border-radius:999px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  cursor:pointer;
+  box-shadow:0 16px 42px rgba(0,0,0,.20);
+  transition:all .28s ease;
+}
+.drawer-toggle:hover {
+  background:#fff;
+  transform:translate(-50%,-50%) scale(1.02);
+}
+.drawer-icon {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;
+  line-height:1;
+  color:var(--gold);
+}
+.drawer-label {
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-size:.55rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink-muted);
+}
+.hero.drawer-closed .drawer-toggle {
+  left:50%;
+  border-color:rgba(232,213,176,.38);
+}
+.hero.drawer-closed .drawer-label {
+  color:var(--gold-lt);
+}
+.hero.drawer-closed .drawer-toggle {
+  background:rgba(21,39,68,.96);
+  color:#fff;
+}
+.hero.drawer-closed .drawer-toggle:hover {
+  background:var(--navy-mid);
+}
+
+/* Quiz aligned with the beginning of the hero title */
+.quiz-section .section-head {
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  padding-left:48px;
+  padding-right:48px;
+  justify-content:flex-start;
+  gap:72px;
+}
+.quiz-section .sh-right {
+  text-align:left;
+}
+.quiz-wrapper,
+.score-panel {
+  max-width:720px;
+  margin-left:48px;
+  margin-right:0;
+}
+.score-panel {
+  width:calc(100% - 96px);
+}
+
 /* ─── FOOTER ─── */
 footer {
   background:var(--navy); padding:44px 52px 36px;
@@ -593,7 +699,13 @@ footer {
   .ex-cols{grid-template-columns:1fr;}
   .options-grid{grid-template-columns:1fr;}
   .section-head{flex-direction:column;align-items:flex-start;gap:12px;padding:0 50px;}
+  .quiz-section .section-head{padding:0 28px;gap:12px;}
+  .quiz-wrapper,.score-panel{margin-left:28px;margin-right:28px;max-width:none;width:auto;}
   .sh-right{text-align:left;}
+  .drawer-toggle{display:none;}
+  .hero.drawer-closed{grid-template-columns:1fr;}
+  .hero.drawer-closed .hero-right{display:flex;min-height:680px;padding:42px 18px 56px;}
+  .hero.drawer-closed .hero-slide-panel,.hero.drawer-closed #hero-canvas,.hero.drawer-closed .hero-right-word{opacity:1;transform:none;pointer-events:auto;}
   .site-header{padding:0 20px;}
   footer{flex-direction:column;gap:18px;}
   .footer-right{align-items:flex-start;}
@@ -644,6 +756,10 @@ footer {
   </div>
 
   <div class="hero-right" id="slides">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-expanded="true" aria-controls="slides" aria-label="Recolher explicação">
+      <span class="drawer-icon" id="drawer-icon">→</span>
+      <span class="drawer-label" id="drawer-label">Slides</span>
+    </button>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-right-word">grammar</div>
 
@@ -939,6 +1055,24 @@ document.addEventListener('keydown',e=>{
 let tx=0;
 track.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX;},{passive:true});
 track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)goTo(current+(dx<0?1:-1));});
+
+/* DRAWER */
+const heroShell=document.querySelector('.hero');
+const drawerToggle=document.getElementById('drawer-toggle');
+const drawerIcon=document.getElementById('drawer-icon');
+function setDrawer(open){
+  if(!heroShell || !drawerToggle) return;
+  heroShell.classList.toggle('drawer-closed', !open);
+  drawerToggle.setAttribute('aria-expanded', String(open));
+  drawerToggle.setAttribute('aria-label', open ? 'Recolher explicação' : 'Abrir explicação');
+  if(drawerIcon) drawerIcon.textContent = open ? '→' : '←';
+}
+if(drawerToggle){
+  drawerToggle.addEventListener('click',()=>{
+    const isOpen=drawerToggle.getAttribute('aria-expanded')==='true';
+    setDrawer(!isOpen);
+  });
+}
 
 /* QUIZ */
 const questions=[
