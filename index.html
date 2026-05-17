@@ -711,6 +711,195 @@ footer {
   .footer-right{align-items:flex-start;}
   .quiz-card{padding:28px 20px;}
 }
+
+
+/* ─── FULL-PAGE DRAWER OVERRIDE ─── */
+/* The hero becomes a clean landing area; the blue explanation panel is now a full-width drawer. */
+.hero {
+  grid-template-columns:1fr !important;
+  min-height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+.hero-left {
+  width:min(520px, 100%);
+  min-height:calc(100vh - 62px);
+  padding:72px 48px 72px 48px !important;
+}
+.hero-right {
+  position:fixed !important;
+  top:62px;
+  right:0;
+  bottom:0;
+  width:100vw;
+  min-width:0 !important;
+  height:calc(100vh - 62px);
+  z-index:160;
+  background:var(--navy);
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  padding:64px clamp(54px, 7vw, 110px) 54px !important;
+  overflow:hidden;
+  box-shadow:-24px 0 70px rgba(21,39,68,.18);
+  transform:translateX(0);
+  transition:transform .72s cubic-bezier(.77,0,.18,1), box-shadow .5s ease;
+}
+.hero.drawer-closed {
+  grid-template-columns:1fr !important;
+}
+.hero.drawer-closed .hero-left {
+  padding-right:48px !important;
+}
+.hero.drawer-closed .hero-right {
+  padding:0 !important;
+  transform:translateX(calc(100% - 64px));
+  min-width:0 !important;
+  box-shadow:-10px 0 30px rgba(21,39,68,.08);
+}
+.hero-slide-panel,
+#hero-canvas,
+.hero-right-word {
+  transition:opacity .42s ease, transform .55s cubic-bezier(.77,0,.18,1);
+}
+.hero.drawer-closed .hero-slide-panel,
+.hero.drawer-closed #hero-canvas,
+.hero.drawer-closed .hero-right-word {
+  opacity:0 !important;
+  transform:translateX(48px) !important;
+  pointer-events:none !important;
+}
+.hero-slide-panel {
+  width:min(100%, 1040px) !important;
+}
+.hero-slider-outer {
+  padding:0 54px !important;
+}
+.hero-track-wrap {
+  border-radius:var(--radius);
+  box-shadow:0 26px 90px rgba(0,0,0,.26);
+}
+.hero-right .slide-card {
+  min-height:min(560px, calc(100vh - 260px));
+  max-height:calc(100vh - 245px);
+  padding:54px clamp(34px, 5vw, 68px) 46px !important;
+}
+.hero-slide-kicker {
+  margin-left:54px;
+}
+.hero-slide-footer {
+  padding:0 54px;
+}
+.hero-go-quiz-wrap {
+  margin-left:54px;
+}
+.drawer-toggle {
+  position:absolute !important;
+  z-index:220;
+  border:1px solid rgba(232,213,176,.38);
+  background:rgba(250,250,247,.97);
+  color:var(--navy);
+  box-shadow:0 18px 46px rgba(0,0,0,.22);
+  transition:all .32s ease;
+}
+/* Open state: close button in the top-right corner of the full drawer. */
+.hero:not(.drawer-closed) .drawer-toggle {
+  top:28px !important;
+  right:34px !important;
+  left:auto !important;
+  transform:none !important;
+  width:52px !important;
+  height:52px !important;
+  min-height:52px !important;
+  border-radius:50% !important;
+  flex-direction:row !important;
+  gap:0 !important;
+}
+.hero:not(.drawer-closed) .drawer-icon {
+  font-family:'Raleway',sans-serif;
+  font-size:1.35rem;
+  font-weight:300;
+  color:var(--navy);
+}
+.hero:not(.drawer-closed) .drawer-label {
+  display:none;
+}
+/* Closed state: a refined vertical tab remains visible on the right edge. */
+.hero.drawer-closed .drawer-toggle {
+  left:32px !important;
+  right:auto !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  width:50px !important;
+  min-height:176px !important;
+  border-radius:999px !important;
+  flex-direction:column !important;
+  gap:12px !important;
+  background:rgba(250,250,247,.98) !important;
+  border-color:rgba(232,213,176,.42) !important;
+}
+.hero.drawer-closed .drawer-toggle:hover {
+  background:#fff !important;
+  transform:translate(-50%,-50%) scale(1.03) !important;
+}
+.hero.drawer-closed .drawer-icon {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;
+  color:var(--gold);
+}
+.hero.drawer-closed .drawer-label {
+  display:block;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-size:.55rem;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+/* Make header stay above the closed tab but below the open learning drawer. */
+.site-header { z-index:250; }
+.hero:not(.drawer-closed) .hero-right { z-index:300; }
+.hero:not(.drawer-closed) .drawer-toggle { z-index:340; }
+
+@media(max-width:860px){
+  .hero-left{
+    min-height:calc(100vh - 62px);
+    width:100%;
+    padding:98px 28px 60px !important;
+  }
+  .hero-right{
+    top:62px;
+    height:calc(100vh - 62px);
+    padding:52px 18px 38px !important;
+  }
+  .hero.drawer-closed .hero-right{
+    transform:translateX(calc(100% - 52px));
+  }
+  .hero.drawer-closed .drawer-toggle{
+    left:26px !important;
+    min-height:150px !important;
+    width:44px !important;
+  }
+  .hero:not(.drawer-closed) .drawer-toggle{
+    top:18px !important;
+    right:18px !important;
+    width:44px !important;
+    height:44px !important;
+    min-height:44px !important;
+  }
+  .hero-slide-panel{width:100% !important;}
+  .hero-slide-kicker{margin-left:38px; margin-bottom:14px;}
+  .hero-slider-outer{padding:0 38px !important;}
+  .hero-slide-footer{padding:0 38px;}
+  .hero-go-quiz-wrap{margin-left:38px;}
+  .hero-right .slide-card{
+    min-height:calc(100vh - 245px);
+    max-height:calc(100vh - 245px);
+    padding:34px 22px 30px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -940,7 +1129,7 @@ footer {
 
       <div class="go-quiz-wrap hero-go-quiz-wrap">
         <button class="go-quiz-btn" id="go-quiz-btn"
-          onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
+          onclick="setDrawer(false); document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
           Ir para os Exercícios &nbsp;→
         </button>
       </div>
@@ -1056,16 +1245,19 @@ let tx=0;
 track.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX;},{passive:true});
 track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)goTo(current+(dx<0?1:-1));});
 
-/* DRAWER */
+/* FULL-PAGE DRAWER */
 const heroShell=document.querySelector('.hero');
 const drawerToggle=document.getElementById('drawer-toggle');
 const drawerIcon=document.getElementById('drawer-icon');
+const drawerLabel=document.getElementById('drawer-label');
 function setDrawer(open){
   if(!heroShell || !drawerToggle) return;
   heroShell.classList.toggle('drawer-closed', !open);
   drawerToggle.setAttribute('aria-expanded', String(open));
-  drawerToggle.setAttribute('aria-label', open ? 'Recolher explicação' : 'Abrir explicação');
-  if(drawerIcon) drawerIcon.textContent = open ? '→' : '←';
+  drawerToggle.setAttribute('aria-label', open ? 'Fechar explicação' : 'Abrir explicação em tela cheia');
+  if(drawerIcon) drawerIcon.textContent = open ? '×' : '←';
+  if(drawerLabel) drawerLabel.textContent = open ? 'Fechar' : 'Slides';
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 if(drawerToggle){
   drawerToggle.addEventListener('click',()=>{
@@ -1073,6 +1265,18 @@ if(drawerToggle){
     setDrawer(!isOpen);
   });
 }
+const explanationLink=document.querySelector('.nav-link[href="#slides"]');
+if(explanationLink){
+  explanationLink.addEventListener('click',(e)=>{
+    e.preventDefault();
+    setDrawer(true);
+  });
+}
+const exerciseLink=document.querySelector('.nav-link[href="#quiz"]');
+if(exerciseLink){
+  exerciseLink.addEventListener('click',()=>setDrawer(false));
+}
+setDrawer(false);
 
 /* QUIZ */
 const questions=[
