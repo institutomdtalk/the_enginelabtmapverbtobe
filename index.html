@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Verbo To Be — MD Talk | Hero Slider</title>
+<title>O Verbo To Be — MD Talk | Hero Slider Expanded</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -73,12 +73,12 @@ body {
 /* ─── HERO ─── */
 .hero {
   min-height:100vh;
-  display:grid; grid-template-columns:1fr 1fr;
+  display:grid; grid-template-columns:minmax(360px, 40%) minmax(620px, 60%);
   padding-top:62px; overflow:hidden;
 }
 .hero-left {
   display:flex; flex-direction:column; justify-content:center;
-  padding:72px 60px 72px 48px; position:relative; z-index:2;
+  padding:72px 44px 72px 48px; position:relative; z-index:2;
 }
 .eyebrow {
   display:flex; align-items:center; gap:12px; margin-bottom:28px;
@@ -119,7 +119,7 @@ body {
 
 .hero-desc {
   font-size:.84rem; font-weight:300; line-height:1.9; color:var(--ink-mid);
-  max-width:360px; margin-bottom:40px;
+  max-width:360px; margin-bottom:0;
   padding-left:16px; border-left:2px solid var(--gold-pale);
 }
 .hero-cta {
@@ -479,12 +479,12 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:86px 68px 54px;
+  padding:82px 50px 54px;
 }
 .hero-slide-panel {
   position:relative;
   z-index:2;
-  width:min(100%, 720px);
+  width:min(100%, 900px);
   animation:fadeUp .7s ease both;
 }
 .hero-slide-kicker {
@@ -507,7 +507,7 @@ body {
 .hero-slider-outer {
   max-width:none;
   margin:0;
-  padding:0 54px;
+  padding:0 48px;
 }
 .hero-track-wrap {
   border-color:rgba(232,213,176,.18);
@@ -515,10 +515,10 @@ body {
 }
 .hero-right .slide-card {
   background:rgba(250,250,247,.97);
-  min-height:430px;
-  max-height:calc(100vh - 245px);
+  min-height:470px;
+  max-height:calc(100vh - 220px);
   overflow-y:auto;
-  padding:42px 44px 38px;
+  padding:48px 56px 42px;
 }
 .hero-right .slide-card::-webkit-scrollbar { width:6px; }
 .hero-right .slide-card::-webkit-scrollbar-track { background:rgba(21,39,68,.05); }
@@ -641,10 +641,6 @@ footer {
     <p class="hero-desc">
       Estude as formas afirmativa, negativa e interrogativa do <em>to be</em> no presente simples. Depois, teste seus conhecimentos com exercícios interativos.
     </p>
-
-    <a class="hero-cta" href="#slides">
-      Ver explicação <span class="cta-arrow">→</span>
-    </a>
   </div>
 
   <div class="hero-right" id="slides">
