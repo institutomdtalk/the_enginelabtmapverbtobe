@@ -385,12 +385,20 @@ body {
   content:''; position:absolute; top:0; left:0; right:0; height:1px;
   background:linear-gradient(to right,transparent,var(--rule-gold),transparent);
 }
-.quiz-wrapper { max-width:720px; margin:0 auto; padding:0 24px; }
+.quiz-wrapper {
+  max-width:1160px;
+  margin:0 auto;
+  padding:0 24px;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+  align-items:start;
+}
 
 .quiz-card {
   background:var(--bg-card); border-radius:var(--radius);
   border:1px solid var(--rule);
-  padding:36px 42px; margin-bottom:16px;
+  padding:32px 34px; margin-bottom:0;
   position:relative; overflow:hidden;
   box-shadow:0 2px 16px rgba(21,39,68,.05);
   opacity:0; transform:translateY(16px);
@@ -656,12 +664,159 @@ body {
 }
 .quiz-wrapper,
 .score-panel {
-  max-width:720px;
+  max-width:1160px;
   margin-left:48px;
-  margin-right:0;
+  margin-right:48px;
 }
 .score-panel {
   width:calc(100% - 96px);
+}
+
+
+/* ─── WHATSAPP CTA ─── */
+.whatsapp-cta-section {
+  max-width:1160px;
+  margin:42px 48px 0 48px;
+  padding-bottom:8px;
+}
+.whatsapp-cta-card {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg, rgba(250,250,247,.92), rgba(240,240,236,.72));
+  border:1px solid rgba(37,211,102,.22);
+  border-radius:var(--radius);
+  padding:26px 30px 30px;
+  box-shadow:0 18px 50px rgba(21,39,68,.08);
+}
+.whatsapp-cta-card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 92% 18%, rgba(37,211,102,.16), transparent 34%);
+  pointer-events:none;
+}
+.whatsapp-cta-kicker {
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+  font-size:.57rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#128C4A;
+}
+.whatsapp-cta-kicker::before {
+  content:'';
+  width:22px;
+  height:1px;
+  background:#25D366;
+}
+.whatsapp-cta-title {
+  position:relative;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.45rem,2.4vw,2rem);
+  font-weight:400;
+  line-height:1.15;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.whatsapp-cta-text {
+  position:relative;
+  max-width:470px;
+  font-size:.82rem;
+  line-height:1.8;
+  font-weight:300;
+  color:var(--ink-mid);
+  margin-bottom:22px;
+}
+.whatsapp-btn {
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:52px;
+  padding:0 34px;
+  border-radius:8px;
+  background:linear-gradient(135deg, #12B85A 0%, #25D366 45%, #7CFF9B 100%);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.55);
+  text-decoration:none;
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  text-shadow:0 1px 8px rgba(0,0,0,.22);
+  box-shadow:0 14px 34px rgba(37,211,102,.32), inset 0 1px 0 rgba(255,255,255,.45);
+  transition:transform .24s ease, box-shadow .24s ease, filter .24s ease;
+}
+.whatsapp-btn::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55) 45%, transparent 70%);
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+}
+.whatsapp-btn::after {
+  content:'';
+  position:absolute;
+  inset:-5px;
+  z-index:-2;
+  border-radius:10px;
+  background:rgba(37,211,102,.26);
+  filter:blur(12px);
+  opacity:.7;
+  animation:waGlow 2.4s ease-in-out infinite;
+}
+.whatsapp-btn:hover {
+  transform:translateY(-2px);
+  filter:saturate(1.08);
+  box-shadow:0 20px 46px rgba(37,211,102,.42), inset 0 1px 0 rgba(255,255,255,.5);
+}
+.whatsapp-btn:hover::before {
+  transform:translateX(120%);
+}
+.whatsapp-btn .wa-mark {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:rgba(255,255,255,.62);
+  color:#128C4A;
+  font-size:.92rem;
+  font-weight:900;
+  line-height:1;
+}
+.whatsapp-btn .wa-arrow {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.12rem;
+  line-height:1;
+  transition:transform .24s ease;
+}
+.whatsapp-btn:hover .wa-arrow {
+  transform:translateX(4px);
+}
+@keyframes waGlow {
+  0%,100% { opacity:.48; transform:scale(.98); }
+  50% { opacity:.92; transform:scale(1.02); }
+}
+
+@media(max-width:1180px){
+  .quiz-wrapper{grid-template-columns:1fr;max-width:720px;}
+  .score-panel{max-width:720px;}
+  .whatsapp-cta-section{max-width:720px;}
+}
+@media(max-width:860px){
+  .whatsapp-cta-section{margin-left:28px;margin-right:28px;max-width:none;}
+  .whatsapp-cta-card{padding:24px 22px 28px;}
+  .whatsapp-btn{width:100%;padding:0 18px;}
 }
 
 /* ─── FOOTER ─── */
@@ -1151,10 +1306,22 @@ footer {
   <div class="score-panel" id="score-panel">
     <p class="score-label">Resultado Final</p>
     <div class="score-number" id="score-num">0</div>
-    <div class="score-denom" id="score-denom">de 8</div>
+    <div class="score-denom" id="score-denom">de 12</div>
     <p class="score-msg" id="score-msg"></p>
     <button class="retry-btn" onclick="resetQuiz()">Tentar Novamente</button>
   </div>
+
+  <div class="whatsapp-cta-section" data-reveal>
+    <div class="whatsapp-cta-card">
+      <p class="whatsapp-cta-kicker">Suporte da aula</p>
+      <h3 class="whatsapp-cta-title">Ficou com alguma dúvida?</h3>
+      <p class="whatsapp-cta-text">Envie uma mensagem diretamente para a MD Talk pelo WhatsApp e continue praticando com orientação.</p>
+      <a class="whatsapp-btn" href="https://wa.me/5514997758941?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20a%20aula%20O%20Verbo%20To%20Be." target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp da MD Talk">
+        Tirar dúvida pelo WhatsApp
+      </a>
+    </div>
+  </div>
+
 </section>
 
 <!-- FOOTER -->
@@ -1288,23 +1455,35 @@ const questions=[
    wrongFeedback:'A resposta correta é <strong>are</strong>. "My parents" é plural — usamos <em>are</em>.'},
   {text:'"_____ you from Brazil?"',options:['Am','Is','Are','Do'],correct:2,
    feedback:'<strong>Correto!</strong> Em perguntas com <em>you</em>, invertemos: <em>Are you…?</em>',
-   wrongFeedback:'A resposta correta é <strong>Are</strong>. Com <em>you</em>, a forma interrogativa é <em>Are you…?</em>'},
+   wrongFeedback:'A resposta correta é <strong>Are</strong>. Com <em>you</em>, a forma interrogativa é <em>Are you…?</em>.'},
   {text:'The weather _____ not very good today.',options:["isn't","aren't","am not","doesn't"],correct:0,
-   feedback:'<strong>Correto!</strong> "The weather" é singular → usamos <em>isn\'t</em>.',
-   wrongFeedback:'A resposta correta é <strong>isn\'t</strong>. "The weather" é singular → <em>is not / isn\'t</em>.'},
+   feedback:'<strong>Correto!</strong> "The weather" é singular → usamos <em>isn't</em>.',
+   wrongFeedback:'A resposta correta é <strong>isn't</strong>. "The weather" é singular → <em>is not / isn't</em>.'},
   {text:'I _____ so tired after the long trip.',options:['is','are','am','be'],correct:2,
    feedback:'<strong>Correto!</strong> Com <em>I</em>, a única forma possível é <em>am</em>.',
    wrongFeedback:'A resposta correta é <strong>am</strong>. Com <em>I</em>, usamos sempre <em>am</em>.'},
-  {text:'"— Is he Japanese? — Yes, _____ ."',options:["he's","he is","is he","he be"],correct:1,
+  {text:'"— Is he Japanese? — Yes, _____ ."',options:["he's",'he is','is he','he be'],correct:1,
    feedback:'<strong>Correto!</strong> Na short answer afirmativa, o <em>to be</em> <strong>nunca é abreviado</strong>: <em>Yes, he is.</em>',
    wrongFeedback:'A resposta correta é <strong>he is</strong>. Em short answers afirmativas, a forma nunca é contraída.'},
   {text:'We _____ really excited about the trip.',options:['is','am','are','was'],correct:2,
    feedback:'<strong>Correto!</strong> <em>We</em> sempre vem com <em>are</em>.',
    wrongFeedback:'A resposta correta é <strong>are</strong>. Com <em>we</em>, usamos sempre <em>are</em>.'},
-  {text:'"— Are they English? — No, _____ ."',options:["they aren't","they're not","they are not","all correct"],correct:3,
-   feedback:'<strong>Correto!</strong> Na short answer negativa, <em>they aren\'t</em>, <em>they\'re not</em> e <em>they are not</em> são todas aceitas.',
-   wrongFeedback:'A resposta correta é <strong>todas estão certas</strong>. As três formas são válidas na negativa.'}
-];
+  {text:'"— Are they English? — No, _____ ."',options:["they aren't","they're not",'they are not','all correct'],correct:3,
+   feedback:'<strong>Correto!</strong> Na short answer negativa, <em>they aren't</em>, <em>they're not</em> e <em>they are not</em> são todas aceitas.',
+   wrongFeedback:'A resposta correta é <strong>all correct</strong>. As três formas são válidas na negativa.'},
+  {text:'This building _____ very modern.',options:['am','are','is','be'],correct:2,
+   feedback:'<strong>Correto!</strong> "This building" é singular, por isso usamos <em>is</em>.',
+   wrongFeedback:'A resposta correta é <strong>is</strong>. Com um sujeito singular como "this building", usamos <em>is</em>.'},
+  {text:'The apartments _____ available for viewing.',options:['is','are','am','does'],correct:1,
+   feedback:'<strong>Correto!</strong> "The apartments" é plural, então usamos <em>are</em>.',
+   wrongFeedback:'A resposta correta é <strong>are</strong>. Como "apartments" está no plural, usamos <em>are</em>.'},
+  {text:'"— Are you the owner? — Yes, _____ ."',options:["I'm",'I am','am I','I be'],correct:1,
+   feedback:'<strong>Correto!</strong> Em short answers afirmativas, não usamos contração: <em>Yes, I am.</em>',
+   wrongFeedback:'A resposta correta é <strong>I am</strong>. Em respostas curtas afirmativas, não usamos <em>I'm</em>.'},
+  {text:'It _____ a spacious living room.',options:['are','am','is','be'],correct:2,
+   feedback:'<strong>Correto!</strong> Com <em>it</em>, usamos <em>is</em>: <em>It is a spacious living room.</em>',
+   wrongFeedback:'A resposta correta é <strong>is</strong>. O pronome <em>it</em> sempre combina com <em>is</em> no presente.'}
+]
 let answered,score;
 function buildQuiz(){
   const c=document.getElementById('quiz-container');
