@@ -1069,7 +1069,7 @@ footer {
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero drawer-closed">
   <div class="hero-left">
     <div class="eyebrow">
       <span class="eyebrow-line"></span>
@@ -1089,7 +1089,7 @@ footer {
       </div>
       <div class="hm-sep"></div>
       <div class="hm-item">
-        <span class="hm-val">8</span>
+        <span class="hm-val">12</span>
         <span class="hm-lbl">Exercícios</span>
       </div>
     </div>
@@ -1100,8 +1100,8 @@ footer {
   </div>
 
   <div class="hero-right" id="slides">
-    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-expanded="true" aria-controls="slides" aria-label="Recolher explicação">
-      <span class="drawer-icon" id="drawer-icon">→</span>
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="slides" aria-label="Abrir explicação em tela cheia">
+      <span class="drawer-icon" id="drawer-icon">←</span>
       <span class="drawer-label" id="drawer-label">Slides</span>
     </button>
     <canvas id="hero-canvas"></canvas>
@@ -1457,8 +1457,8 @@ const questions=[
    feedback:'<strong>Correto!</strong> Em perguntas com <em>you</em>, invertemos: <em>Are you…?</em>',
    wrongFeedback:'A resposta correta é <strong>Are</strong>. Com <em>you</em>, a forma interrogativa é <em>Are you…?</em>.'},
   {text:'The weather _____ not very good today.',options:["isn't","aren't","am not","doesn't"],correct:0,
-   feedback:'<strong>Correto!</strong> "The weather" é singular → usamos <em>isn't</em>.',
-   wrongFeedback:'A resposta correta é <strong>isn't</strong>. "The weather" é singular → <em>is not / isn't</em>.'},
+   feedback:'<strong>Correto!</strong> "The weather" é singular → usamos <em>isn\'t</em>.',
+   wrongFeedback:'A resposta correta é <strong>isn\'t</strong>. "The weather" é singular → <em>is not / isn\'t</em>.'},
   {text:'I _____ so tired after the long trip.',options:['is','are','am','be'],correct:2,
    feedback:'<strong>Correto!</strong> Com <em>I</em>, a única forma possível é <em>am</em>.',
    wrongFeedback:'A resposta correta é <strong>am</strong>. Com <em>I</em>, usamos sempre <em>am</em>.'},
@@ -1469,7 +1469,7 @@ const questions=[
    feedback:'<strong>Correto!</strong> <em>We</em> sempre vem com <em>are</em>.',
    wrongFeedback:'A resposta correta é <strong>are</strong>. Com <em>we</em>, usamos sempre <em>are</em>.'},
   {text:'"— Are they English? — No, _____ ."',options:["they aren't","they're not",'they are not','all correct'],correct:3,
-   feedback:'<strong>Correto!</strong> Na short answer negativa, <em>they aren't</em>, <em>they're not</em> e <em>they are not</em> são todas aceitas.',
+   feedback:'<strong>Correto!</strong> Na short answer negativa, <em>they aren\'t</em>, <em>they\'re not</em> e <em>they are not</em> são todas aceitas.',
    wrongFeedback:'A resposta correta é <strong>all correct</strong>. As três formas são válidas na negativa.'},
   {text:'This building _____ very modern.',options:['am','are','is','be'],correct:2,
    feedback:'<strong>Correto!</strong> "This building" é singular, por isso usamos <em>is</em>.',
@@ -1479,7 +1479,7 @@ const questions=[
    wrongFeedback:'A resposta correta é <strong>are</strong>. Como "apartments" está no plural, usamos <em>are</em>.'},
   {text:'"— Are you the owner? — Yes, _____ ."',options:["I'm",'I am','am I','I be'],correct:1,
    feedback:'<strong>Correto!</strong> Em short answers afirmativas, não usamos contração: <em>Yes, I am.</em>',
-   wrongFeedback:'A resposta correta é <strong>I am</strong>. Em respostas curtas afirmativas, não usamos <em>I'm</em>.'},
+   wrongFeedback:'A resposta correta é <strong>I am</strong>. Em respostas curtas afirmativas, não usamos <em>I\'m</em>.'},
   {text:'It _____ a spacious living room.',options:['are','am','is','be'],correct:2,
    feedback:'<strong>Correto!</strong> Com <em>it</em>, usamos <em>is</em>: <em>It is a spacious living room.</em>',
    wrongFeedback:'A resposta correta é <strong>is</strong>. O pronome <em>it</em> sempre combina com <em>is</em> no presente.'}
